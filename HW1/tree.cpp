@@ -7,7 +7,7 @@ DecisionTreeNode::~DecisionTreeNode()
 	answers.~list();
 }
 
-DecisionTreeNode * DecisionTreeNode::search(string str)
+DecisionTreeNode * DecisionTreeNode::search(string str, DecisionTreeNode*& father=nullptr)
 {
 	if (this->_value == str)
 		return this;
@@ -24,8 +24,8 @@ Tree::~Tree()
 	root.~DecisionTreeNode();
 }
 
-DecisionTreeNode * Tree::search(string str)
+DecisionTreeNode * Tree::search(string str ,DecisionTreeNode*& father)
 {
-	if ()
+	_root->search(str, , DecisionTreeNode* father)
 	return nullptr;
 }

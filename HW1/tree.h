@@ -22,7 +22,7 @@ public:
 	//DecisionTreeNode& operator=(DecisionTreeNode&&);
 
 	void setValue(string str) { _value = str; }
-	DecisionTreeNode* search(string str);
+	DecisionTreeNode* search(string str ,DecisionTreeNode*& father);
 };
 
 class Answer
@@ -37,13 +37,13 @@ class Tree: public DecisionTreeNode
 {
 public:
 private:
-	DecisionTreeNode root;
+	DecisionTreeNode* _root;
 
 public:
 
-	Tree() { root = nullptr; }
+	Tree() { _root = nullptr; }
 	~Tree();
-	void addRoot(string str) { root.setValue(str); }
-	DecisionTreeNode* search(string str);
+	void addRoot(string str) { _root->setValue(str); }
+	DecisionTreeNode* search(string str, DecisionTreeNode*& father);
 };
 
