@@ -3,6 +3,7 @@
 #include<iostream>
 #include<list>
 #include<algorithm>
+#include<iterator>
 using namespace std;
 
 class Answer;
@@ -11,19 +12,21 @@ class DecisionTreeNode
 {
 public:
 	DecisionTreeNode();
-	DecisionTreeNode(string val) { _value = val; }
+	DecisionTreeNode(string val) { _value = val; _isLeaf = true;	}
 	~DecisionTreeNode();
+	void del();
 	void addAnswer(string, string);
 	bool isLeaf() { return _isLeaf; }
-	bool isLeaf(bool b) { _isLeaf=b; }
+	void isLeaf(bool b) { _isLeaf=b; }
 	void setValue(string str) { _value = str; }
 	DecisionTreeNode* search(string str ,DecisionTreeNode*& father);
-	void ptint();
+	void print();
 	bool show();
 
 protected:
 	string _value;
 	list<Answer*> answers;
+	list<Answer*>::iterator it;
 	bool _isLeaf;
 
 };
@@ -51,12 +54,12 @@ public:
 
 	Tree() { _root = nullptr; }
 	~Tree();
-	void addRoot(string str) { _root->setValue(str); }
+	void addRoot(string str) { DecisionTreeNode* _root = new DecisionTreeNode(str); }
 	DecisionTreeNode* search(string str, DecisionTreeNode*& father);
 	bool addSon(string father, string val, string sol);
 	void printAllTree();
-	void searchAndPrint(string val) { DecisionTreeNode* temp; temp = temp->search(val, _root); temp->ptint(); delete temp; }
-	void deleteSubTree(string val) { DecisionTreeNode* temp; temp = temp->search(val, _root); temp->~DecisionTreeNode; delete temp; }
+	void searchAndPrint(string val) { DecisionTreeNode* temp = new DecisionTreeNode; temp = temp->search(val, _root); temp->print(); delete temp; }
+	void deleteSubTree(string val) { DecisionTreeNode* temp = new DecisionTreeNode; temp = temp->search(val, _root); temp->del(); delete temp; }
 	void process();
 };
 

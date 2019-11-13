@@ -10,7 +10,6 @@ Author: Yedidya Korn 203304084
 #include <list>
 #include <string>
 #include "tree.h"
-#include "main.h"
 
 using namespace std;
 int main()
